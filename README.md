@@ -105,6 +105,59 @@ If you prefer not to use Git:
 - **Episode Management:** Easy-to-update episode cards
 - **Contact Form Ready:** Structured for easy contact integration
 
+## 🏒 **Adding Hockey Landscape Images**
+
+Your website now supports real hockey background images that rotate every 8 seconds.
+
+### Best Free Hockey Image Sources:
+1. **[Pexels](https://www.pexels.com/search/hockey/)** - Completely free, no attribution required
+2. **[Rawpixel](https://www.rawpixel.com/search/ice%20hockey)** - Public domain images
+3. **[Freepik](https://www.freepik.com/free-photos-vectors/hockey-background)** - Free with attribution
+4. **[FreeImages](https://www.freeimages.com/search/ice-hockey)** - Free with registration
+
+### Image Requirements:
+- **Format:** JPG or PNG
+- **Size:** Minimum 1920x1080px (landscape)
+- **Orientation:** Landscape/horizontal
+- **File Size:** Under 2MB each for fast loading
+
+### Recommended Image Types:
+1. **Hockey rink aerial view** - Ice surface from above
+2. **Arena with crowd** - Stadium atmosphere shots  
+3. **Players in action** - Game action during play
+4. **Ice surface details** - Close-ups of ice, sticks, pucks
+5. **Stadium exteriors** - Hockey arena buildings
+
+### Upload Instructions:
+1. **Create the folder structure:**
+   ```
+   assets/
+   └── images/
+       ├── hockey-rink-1.jpg      # Aerial rink view
+       ├── hockey-arena-2.jpg     # Arena/crowd shot
+       └── hockey-players-3.jpg   # Players in action
+   ```
+
+2. **Upload to GitHub:**
+   - Go to your repository
+   - Create `assets/images/` folder
+   - Upload your 3 hockey images with these exact names
+
+3. **Images automatically display:**
+   - The CSS is already configured to load these images
+   - They'll start rotating as backgrounds immediately
+   - Fallback placeholder images show if files aren't found
+
+### Image Optimization Tips:
+- **Compress images** using TinyPNG or similar
+- **Test on mobile** - landscapes work better than portraits
+- **Choose high contrast** - images appear at low opacity behind text
+- **Avoid text-heavy images** - they can clash with site content
+
+## 📺 **Connecting Your Podcast Platforms**
+
+The website now has enhanced podcast integration with multiple platform support.
+
 ## 📝 Content Management Guide
 
 ### Adding New Episodes
@@ -118,31 +171,116 @@ To add a new episode, find this section in `index.html` (around line 540):
         <div class="episode-number">EPISODE 04</div>
         <h3 class="episode-title">Your New Episode Title</h3>
         <p class="episode-description">Description of your episode content...</p>
-        <button class="play-button">
+        <!-- Replace href="#" with actual episode URL -->
+        <a href="#" class="play-button" data-episode="4">
             <i class="fas fa-play"></i>
             Play Episode
-        </button>
+        </a>
     </div>
 </div>
 ```
 
+### Adding Hockey Background Images
+
+1. **Download hockey images** from these free sources:
+   - **[Pexels](https://www.pexels.com/search/hockey/)** - Completely free
+   - **[Rawpixel](https://www.rawpixel.com/search/ice%20hockey)** - Public domain
+   - **[Freepik](https://www.freepik.com/free-photos-vectors/hockey-background)** - Free with attribution
+
+2. **Prepare your images:**
+   - **Format:** JPG or PNG
+   - **Size:** 1920x1080px or larger (landscape orientation)
+   - **Names:** `hockey-rink-1.jpg`, `hockey-arena-2.jpg`, `hockey-players-3.jpg`
+
+3. **Upload images:**
+   - Create folder: `assets/images/` in your repository
+   - Upload your 3 hockey landscape images
+
+4. **Images are automatically loaded** - the CSS references:
+   ```css
+   .bg-image:nth-child(1) { background-image: url('assets/images/hockey-rink-1.jpg'); }
+   .bg-image:nth-child(2) { background-image: url('assets/images/hockey-arena-2.jpg'); }
+   .bg-image:nth-child(3) { background-image: url('assets/images/hockey-players-3.jpg'); }
+   ```
+
+**Image Recommendations:**
+- Hockey rink from above (aerial view)
+- Hockey arena with crowd
+- Players in action during a game
+- Ice surface with hockey sticks and pucks
+- Hockey stadium atmosphere shots
+
 ### Updating Social Media Links
 
-Find these lines in `index.html` (around line 485) and replace `#` with your actual URLs:
+Find these sections in `index.html` and replace with your actual URLs:
 
+**Header Navigation** (around line 485):
 ```html
 <div class="social-icons">
-    <a href="https://facebook.com/yourpage" aria-label="Facebook">
+    <a href="https://www.facebook.com/YourPuckPalsPage" target="_blank" aria-label="Facebook">
         <i class="fab fa-facebook-f"></i>
     </a>
-    <a href="https://youtube.com/yourchannel" aria-label="YouTube">
+    <a href="https://www.youtube.com/@YourPuckPalsChannel" target="_blank" aria-label="YouTube">
         <i class="fab fa-youtube"></i>
     </a>
-    <a href="https://open.spotify.com/show/yourshow" aria-label="Spotify">
+    <a href="https://open.spotify.com/show/YourShowID" target="_blank" aria-label="Spotify">
         <i class="fab fa-spotify"></i>
     </a>
 </div>
 ```
+
+**Footer** (around line 740):
+```html
+<div class="footer-social">
+    <a href="https://www.facebook.com/YourPuckPalsPage" target="_blank" aria-label="Facebook">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://www.youtube.com/@YourPuckPalsChannel" target="_blank" aria-label="YouTube">
+        <i class="fab fa-youtube"></i>
+    </a>
+    <a href="https://open.spotify.com/show/YourShowID" target="_blank" aria-label="Spotify">
+        <i class="fab fa-spotify"></i>
+    </a>
+</div>
+```
+
+### Connecting Podcast Platforms
+
+**Main Listen Buttons** (around line 535):
+```html
+<div class="listen-buttons">
+    <a href="https://open.spotify.com/show/YourShowID" target="_blank" class="cta-button spotify">
+        <i class="fab fa-spotify"></i> Listen on Spotify
+    </a>
+    <a href="https://www.youtube.com/@YourPuckPalsChannel" target="_blank" class="cta-button youtube">
+        <i class="fab fa-youtube"></i> Watch on YouTube
+    </a>
+    <a href="#episodes" class="cta-button episodes">
+        <i class="fas fa-play"></i> Browse Episodes
+    </a>
+</div>
+```
+
+**How to Get Your URLs:**
+- **Spotify:** Go to your show → Share → Copy show link
+- **YouTube:** Your channel URL (youtube.com/@YourChannelName)
+- **Facebook:** Your page URL (facebook.com/YourPageName)
+
+### Linking Individual Episodes
+
+For each episode play button, replace the `href="#"` with actual episode URLs:
+```html
+<a href="https://open.spotify.com/episode/YOUR_EPISODE_ID" class="play-button" data-episode="1">
+    <i class="fas fa-play"></i>
+    Play Episode
+</a>
+```
+
+**Getting Episode URLs:**
+- **Spotify:** Go to episode → Share → Copy episode link
+- **YouTube:** Copy individual video URL
+- **Apple Podcasts:** Share → Copy link
+- **Any podcast platform:** Use their share/link feature
 
 ### Changing Contact Information
 
