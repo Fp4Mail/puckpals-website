@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Puck Pals - Hockey Podcast</title>
+    <meta name="description" content="Puck Pals - Your premier destination for hockey insights, player stories, and game analysis. Join us as we break down the ice and dive deep into the world of hockey.">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-chrome-192x192.png">
+    
+    <!-- Web App Manifest (optional for PWA features) -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#7BC4A8">
+    <meta name="application-name" content="Puck Pals">
+    
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -113,6 +127,23 @@
             text-decoration: none;
             letter-spacing: -0.02em;
             position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            display: inline-block;
         }
 
         .logo::after {
@@ -514,7 +545,11 @@
     <!-- Header -->
     <header id="header">
         <nav>
-            <a href="#" class="logo">Puck Pals</a>
+            <a href="#" class="logo">
+                <!-- Uncomment the line below and add your logo file to assets/images/ -->
+                <!-- <img src="assets/images/logo.png" alt="Puck Pals Logo"> -->
+                <span class="logo-text">Puck Pals</span>
+            </a>
             <button class="menu-toggle" id="menuToggle">
                 <span></span>
                 <span></span>
@@ -598,9 +633,9 @@
                     Have a story to share? Want to suggest a topic? We'd love to hear from you!
                 </p>
                 <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-                    <a href="mailto:hello@pvckpals.com" style="color: var(--forest-mist); text-decoration: none; font-size: 1.1rem; font-weight: 600;">
+                    <a href="/cdn-cgi/l/email-protection#ef878a838380af9f998c849f8e839cc18c8082" style="color: var(--forest-mist); text-decoration: none; font-size: 1.1rem; font-weight: 600;">
                         <i class="fas fa-envelope" style="margin-right: 0.5rem;"></i>
-                        hello@pvckpals.com
+                        <span class="__cf_email__" data-cfemail="b6ded3dadad9f6c6c0d5ddc6d7dac598d5d9db">[email&#160;protected]</span>
                     </a>
                     <a href="tel:+1234567890" style="color: var(--forest-mist); text-decoration: none; font-size: 1.1rem; font-weight: 600;">
                         <i class="fas fa-phone" style="margin-right: 0.5rem;"></i>
@@ -623,7 +658,7 @@
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Background Image Rotation
         let currentBg = 0;
         const bgImages = document.querySelectorAll('.bg-image');
@@ -701,9 +736,4 @@
         document.querySelectorAll('.play-button').forEach(button => {
             button.addEventListener('click', function() {
                 // Add your audio player logic here
-                console.log('Playing episode:', this.closest('.episode-card').querySelector('.episode-title').textContent);
-                
-                // Visual feedback
-                this.innerHTML = '<i class="fas fa-pause"></i> Playing...';
-                setTimeout(() => {
-                    this.innerHTML = '<i class="fas fa-play"></i> Pl
+                console.log('Playing episode:', this.closest('.episode-card').querySelector('.episode-title').text

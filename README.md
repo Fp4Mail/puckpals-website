@@ -10,8 +10,60 @@ A modern, responsive hockey podcast website built with HTML, CSS, and JavaScript
 puckpals-website/
 ├── index.html          # Main website file
 ├── README.md          # This file
-└── assets/            # (Optional folder for future assets)
+├── manifest.json      # Web app manifest for PWA features
+├── .gitignore         # Git ignore file
+└── assets/            # Asset folder for images and icons
+    ├── images/
+    │   └── logo.png   # Your logo file (recommended: PNG, 200x50px or similar)
+    └── favicon/
+        ├── favicon.ico           # 16x16 and 32x32 ICO file
+        ├── favicon-32x32.png     # 32x32 PNG
+        ├── favicon-16x16.png     # 16x16 PNG  
+        ├── apple-touch-icon.png  # 180x180 PNG for iOS
+        └── android-chrome-192x192.png # 192x192 PNG for Android
 ```
+
+## 🎨 Adding Your Logo and Favicon
+
+### Logo Setup
+1. **Prepare your logo:**
+   - Format: PNG (transparent background recommended)
+   - Dimensions: ~200px wide x 50px tall (adjust as needed)
+   - Name it: `logo.png`
+
+2. **Upload your logo:**
+   - Create folder: `assets/images/` in your repository
+   - Upload your `logo.png` file
+
+3. **Enable the logo in code:**
+   In `index.html`, find this line (around line 485):
+   ```html
+   <!-- <img src="assets/images/logo.png" alt="Puck Pals Logo"> -->
+   ```
+   Uncomment it by removing the `<!-- -->`:
+   ```html
+   <img src="assets/images/logo.png" alt="Puck Pals Logo">
+   ```
+
+### Favicon Setup
+1. **Create favicon files:** Use a tool like [Favicon.io](https://favicon.io/) or [RealFaviconGenerator](https://realfavicongenerator.net/)
+
+2. **Upload favicon files:**
+   - Create folder: `assets/favicon/` in your repository
+   - Upload all favicon files:
+     - `favicon.ico` (16x16, 32x32)
+     - `favicon-16x16.png`
+     - `favicon-32x32.png`
+     - `apple-touch-icon.png` (180x180)
+     - `android-chrome-192x192.png` (192x192)
+
+3. **Favicon files are already linked** in the HTML - just upload the files!
+
+### Quick Favicon Generator
+1. Go to [Favicon.io](https://favicon.io/)
+2. Upload your logo or create a text-based favicon
+3. Download the generated package
+4. Upload the PNG and ICO files to `assets/favicon/`
 
 ## 🌐 Deployment Instructions
 
@@ -177,6 +229,30 @@ The website includes:
 - Social media meta tags
 - Accessible navigation
 - Fast loading times
+
+## 📱 Progressive Web App (PWA) Features
+
+Your website includes PWA capabilities:
+- **Add to Home Screen:** Users can install your site as an app
+- **Offline Support:** Basic caching for better performance  
+- **App-like Experience:** Full-screen mode on mobile
+- **Custom App Icon:** Uses your favicon as the app icon
+
+The `manifest.json` file enables these features automatically.
+
+## 🖼️ Image Optimization Tips
+
+**Logo Best Practices:**
+- Use PNG format with transparent background
+- Keep file size under 50KB for fast loading
+- Test on both light and dark backgrounds
+- Consider creating a simplified version for small screens
+
+**Favicon Best Practices:**
+- Start with a square design (512x512px)
+- Keep it simple - details get lost at small sizes
+- Use your brand colors
+- Test how it looks in browser tabs
 
 ## 🆘 Troubleshooting
 
