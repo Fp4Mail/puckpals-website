@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puck Pals - Hockey Podcast</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --ice-mint: #E8F5F3;
+            --soft-green: #C2E9E0;
+            --sage-green: #9DD9C8;
+            --forest-mist: #7BC4A8;
+            --deep-ice: #5FA88C;
+            --shadow-green: #4A8B73;
+            --text-dark: #1A3B35;
+            --text-light: #F8FDFC;
+            --accent-blue: #A8D5E2;
+            --warm-white: #FEFFFE;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--ice-mint);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Background Hockey Images */
+        .background-carousel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -2;
+        }
+
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 3s ease-in-out;
+        }
+
+        .bg-image.active {
+            opacity: 0.15;
+        }
+
+        .bg-image:nth-child(1) { background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%23C2E9E0" width="800" height="600"/><circle fill="%239DD9C8" cx="400" cy="300" r="200"/><text x="400" y="320" text-anchor="middle" fill="%235FA88C" font-size="48" font-family="Arial">HOCKEY RINK</text></svg>'); }
+        .bg-image:nth-child(2) { background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%23E8F5F3" width="800" height="600"/><rect fill="%237BC4A8" x="100" y="150" width="600" height="300" rx="50"/><text x="400" y="320" text-anchor="middle" fill="%234A8B73" font-size="42" font-family="Arial">ICE ARENA</text></svg>'); }
+        .bg-image:nth-child(3) { background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%239DD9C8" width="800" height="600"/><polygon fill="%235FA88C" points="400,100 500,250 450,400 350,400 300,250"/><text x="400" y="520" text-anchor="middle" fill="%231A3B35" font-size="36" font-family="Arial">PLAYERS</text></svg>'); }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, 
+                rgba(232, 245, 243, 0.8) 0%, 
+                rgba(194, 233, 224, 0.6) 50%, 
+                rgba(157, 217, 200, 0.7) 100%);
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 0;
+            background: rgba(232, 245, 243, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--soft-green);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(232, 245, 243, 0.98);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: var(--shadow-green);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--forest-mist), var(--accent-blue));
+            transition: width 0.4s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 400;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s ease;
+            text-transform: lowercase;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links li a:hover {
+            color: var(--shadow-green);
+            transform: translateY(-1px);
+        }
+
+        .nav-links li a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: var(--forest-mist);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links li a:hover::before {
+            width: 100%;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--soft-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--shadow-green);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icons a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--forest-mist);
+            color: var(--warm-white);
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        .social-icons a:hover::before {
+            left: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--shadow-green);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100px;
+            min-height: calc(100vh - 100px);
+            position: relative;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--forest-mist), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--shadow-green);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--forest-mist), var(--deep-ice));
+            color: var(--warm-white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--deep-ice), var(--forest-mist));
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(95, 168, 140, 0.3);
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .episodes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .episode-card {
+            background: var(--warm-white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(26, 59, 53, 0.1);
+            transition: all 0.4s ease;
+            border: 1px solid var(--soft-green);
+        }
+
+        .episode-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(26, 59, 53, 0.15);
+        }
+
+        .episode-number {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            color: var(--forest-mist);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .episode-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .episode-description {
+            color: var(--shadow-green);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .play-button {
+            background: var(--sage-green);
+            color: var(--text-dark);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .play-button:hover {
+            background: var(--forest-mist);
+            color: var(--warm-white);
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--text-light);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-social {
+            margin-bottom: 2rem;
+        }
+
+        .footer-social a {
+            color: var(--soft-green);
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: var(--forest-mist);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(232, 245, 243, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.4s ease;
+                border-top: 1px solid var(--soft-green);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .social-icons {
+                margin-top: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .episodes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Carousel -->
+    <div class="background-carousel">
+        <div class="bg-image active"></div>
+        <div class="bg-image"></div>
+        <div class="bg-image"></div>
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <a href="#" class="logo">Puck Pals</a>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">home</a></li>
+                <li><a href="#episodes">episodes</a></li>
+                <li><a href="#about">about</a></li>
+                <li><a href="#contact">contact us</a></li>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero fade-in">
+            <h1>Welcome to <span>Puck Pals</span></h1>
+            <p>Your premier destination for hockey insights, player stories, and game analysis. Join us as we break down the ice and dive deep into the world of hockey.</p>
+            <a href="#episodes" class="cta-button">Listen Now</a>
+        </section>
+
+        <!-- Episodes Section -->
+        <section id="episodes" class="content-section">
+            <h2 class="section-title">Latest Episodes</h2>
+            <div class="episodes-grid">
+                <div class="episode-card floating">
+                    <div class="episode-number">EPISODE 01</div>
+                    <h3 class="episode-title">Season Recap: Highlights and Lowlights</h3>
+                    <p class="episode-description">We dive into the most memorable moments from this season, analyzing key plays and discussing what made this year special.</p>
+                    <button class="play-button">
+                        <i class="fas fa-play"></i>
+                        Play Episode
+                    </button>
+                </div>
+                <div class="episode-card floating">
+                    <div class="episode-number">EPISODE 02</div>
+                    <h3 class="episode-title">Player Spotlight: Rising Stars</h3>
+                    <p class="episode-description">Meet the upcoming talent that's changing the game. We interview young players making their mark in professional hockey.</p>
+                    <button class="play-button">
+                        <i class="fas fa-play"></i>
+                        Play Episode
+                    </button>
+                </div>
+                <div class="episode-card floating">
+                    <div class="episode-number">EPISODE 03</div>
+                    <h3 class="episode-title">Trade Analysis: Winners and Losers</h3>
+                    <p class="episode-description">Breaking down the biggest trades of the season and their impact on team dynamics and championship chances.</p>
+                    <button class="play-button">
+                        <i class="fas fa-play"></i>
+                        Play Episode
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="content-section">
+            <h2 class="section-title">About Puck Pals</h2>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <p style="font-size: 1.2rem; color: var(--shadow-green); line-height: 1.8; margin-bottom: 2rem;">
+                    Puck Pals is more than just a hockey podcast – it's a community of passionate fans, players, and analysts who live and breathe the sport. Our mission is to bring you closer to the game through in-depth analysis, exclusive interviews, and behind-the-scenes stories.
+                </p>
+                <p style="font-size: 1.1rem; color: var(--text-dark); line-height: 1.6;">
+                    Whether you're a seasoned fan or new to the sport, we break down complex plays, share untold stories, and celebrate what makes hockey the greatest game on earth.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="content-section">
+            <h2 class="section-title">Contact Us</h2>
+            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                <p style="font-size: 1.2rem; color: var(--shadow-green); margin-bottom: 2rem;">
+                    Have a story to share? Want to suggest a topic? We'd love to hear from you!
+                </p>
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                    <a href="mailto:hello@pvckpals.com" style="color: var(--forest-mist); text-decoration: none; font-size: 1.1rem; font-weight: 600;">
+                        <i class="fas fa-envelope" style="margin-right: 0.5rem;"></i>
+                        hello@pvckpals.com
+                    </a>
+                    <a href="tel:+1234567890" style="color: var(--forest-mist); text-decoration: none; font-size: 1.1rem; font-weight: 600;">
+                        <i class="fas fa-phone" style="margin-right: 0.5rem;"></i>
+                        (123) 456-7890
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-social">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+            </div>
+            <p>&copy; 2024 Puck Pals. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Background Image Rotation
+        let currentBg = 0;
+        const bgImages = document.querySelectorAll('.bg-image');
+        
+        function rotateBg() {
+            bgImages[currentBg].classList.remove('active');
+            currentBg = (currentBg + 1) % bgImages.length;
+            bgImages[currentBg].classList.add('active');
+        }
+        
+        // Rotate background every 8 seconds
+        setInterval(rotateBg, 8000);
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all content sections
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add floating animation delay to episode cards
+        document.querySelectorAll('.episode-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+        });
+
+        // Play button interactions
+        document.querySelectorAll('.play-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Add your audio player logic here
+                console.log('Playing episode:', this.closest('.episode-card').querySelector('.episode-title').textContent);
+                
+                // Visual feedback
+                this.innerHTML = '<i class="fas fa-pause"></i> Playing...';
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-play"></i> Pl
