@@ -49,7 +49,7 @@ body {
 }
 
 .bg-image.active {
-    opacity: 0.35; /* Increased for better visibility */
+    opacity: 0.45; /* Increased for better visibility */
 }
 
 /* Background images are now set via JavaScript using content.json */
