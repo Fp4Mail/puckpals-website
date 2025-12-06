@@ -75,26 +75,23 @@
             opacity: 0.15;
         }
 
-        /* Default placeholder images - replace with your actual hockey photos */
+        /* Hockey background images - replace with your actual photos */
         .bg-image:nth-child(1) { 
-            background-image: url('assets/images/hockey-rink-1.jpg'); 
-        }
-        .bg-image:nth-child(2) { 
-            background-image: url('assets/images/hockey-arena-2.jpg'); 
-        }
-        .bg-image:nth-child(3) { 
-            background-image: url('assets/images/hockey-players-3.jpg'); 
+            background-image: 
+                url('assets/images/hockey-rink-1.jpg'),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="ice" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23E8F5F3"/><stop offset="50%" stop-color="%23C2E9E0"/><stop offset="100%" stop-color="%239DD9C8"/></linearGradient></defs><rect width="1200" height="800" fill="url(%23ice)"/><ellipse cx="600" cy="400" rx="300" ry="150" fill="none" stroke="%235FA88C" stroke-width="4"/><circle cx="600" cy="400" r="8" fill="%235FA88C"/><line x1="300" y1="250" x2="300" y2="550" stroke="%235FA88C" stroke-width="4"/><line x1="900" y1="250" x2="900" y2="550" stroke="%235FA88C" stroke-width="4"/><text x="600" y="100" text-anchor="middle" fill="%234A8B73" font-size="48" font-family="Arial,sans-serif" font-weight="bold">HOCKEY RINK</text></svg>');
         }
         
-        /* Fallback placeholders if images aren't loaded */
-        .bg-image:nth-child(1):not([style*="background-image"]) { 
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%23C2E9E0" width="800" height="600"/><circle fill="%239DD9C8" cx="400" cy="300" r="200"/><text x="400" y="320" text-anchor="middle" fill="%235FA88C" font-size="48" font-family="Arial">HOCKEY RINK</text></svg>'); 
+        .bg-image:nth-child(2) { 
+            background-image: 
+                url('assets/images/hockey-arena-2.jpg'),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="arena" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23E8F5F3"/><stop offset="70%" stop-color="%237BC4A8"/><stop offset="100%" stop-color="%234A8B73"/></radialGradient></defs><rect width="1200" height="800" fill="url(%23arena)"/><rect x="100" y="200" width="1000" height="400" rx="50" fill="none" stroke="%23C2E9E0" stroke-width="3"/><rect x="150" y="250" width="900" height="300" rx="30" fill="rgba(194,233,224,0.3)"/><circle cx="300" cy="150" r="3" fill="%23E8F5F3"/><circle cx="500" cy="120" r="3" fill="%23E8F5F3"/><circle cx="700" cy="140" r="3" fill="%23E8F5F3"/><circle cx="900" cy="110" r="3" fill="%23E8F5F3"/><text x="600" y="100" text-anchor="middle" fill="%234A8B73" font-size="42" font-family="Arial,sans-serif" font-weight="bold">ICE ARENA</text></svg>');
         }
-        .bg-image:nth-child(2):not([style*="background-image"]) { 
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%23E8F5F3" width="800" height="600"/><rect fill="%237BC4A8" x="100" y="150" width="600" height="300" rx="50"/><text x="400" y="320" text-anchor="middle" fill="%234A8B73" font-size="42" font-family="Arial">ICE ARENA</text></svg>'); 
-        }
-        .bg-image:nth-child(3):not([style*="background-image"]) { 
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%239DD9C8" width="800" height="600"/><polygon fill="%235FA88C" points="400,100 500,250 450,400 350,400 300,250"/><text x="400" y="520" text-anchor="middle" fill="%231A3B35" font-size="36" font-family="Arial">PLAYERS</text></svg>'); 
+        
+        .bg-image:nth-child(3) { 
+            background-image: 
+                url('assets/images/hockey-players-3.jpg'),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="action" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%239DD9C8"/><stop offset="50%" stop-color="%237BC4A8"/><stop offset="100%" stop-color="%235FA88C"/></linearGradient></defs><rect width="1200" height="800" fill="url(%23action)"/><ellipse cx="300" cy="350" rx="40" ry="60" fill="%234A8B73" opacity="0.8"/><ellipse cx="600" cy="400" rx="40" ry="60" fill="%234A8B73" opacity="0.8"/><ellipse cx="900" cy="320" rx="40" ry="60" fill="%234A8B73" opacity="0.8"/><line x1="250" y1="330" x2="320" y2="300" stroke="%231A3B35" stroke-width="4"/><line x1="550" y1="380" x2="620" y2="350" stroke="%231A3B35" stroke-width="4"/><line x1="850" y1="300" x2="920" y2="270" stroke="%231A3B35" stroke-width="4"/><circle cx="600" cy="450" r="6" fill="%231A3B35"/><text x="600" y="150" text-anchor="middle" fill="%231A3B35" font-size="38" font-family="Arial,sans-serif" font-weight="bold">PLAYERS IN ACTION</text></svg>');
         }
 
         .overlay {
@@ -721,9 +718,9 @@
                     Have a story to share? Want to suggest a topic? We'd love to hear from you!
                 </p>
                 <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-                    <a href="mailto:hello@pvckpals.com" style="color: var(--forest-mist); text-decoration: none; font-size: 1.1rem; font-weight: 600;">
+                    <a href="/cdn-cgi/l/email-protection#5a323f3636351a2a2c39312a3b362974393537" style="color: var(--forest-mist); text-decoration: none; font-size: 1.1rem; font-weight: 600;">
                         <i class="fas fa-envelope" style="margin-right: 0.5rem;"></i>
-                        hello@pvckpals.com
+                        <span class="__cf_email__" data-cfemail="91f9f4fdfdfed1e1e7f2fae1f0fde2bff2fefc">[email&#160;protected]</span>
                     </a>
                     <a href="tel:+1234567890" style="color: var(--forest-mist); text-decoration: none; font-size: 1.1rem; font-weight: 600;">
                         <i class="fas fa-phone" style="margin-right: 0.5rem;"></i>
@@ -752,7 +749,7 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Background Image Rotation
         let currentBg = 0;
         const bgImages = document.querySelectorAll('.bg-image');
@@ -841,14 +838,4 @@
                         this.innerHTML = originalContent;
                     }, 2000);
                 }
-                // If actual URL is set, the link will work normally
-            });
-        });
-
-        // Add loading animation
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-        });
-    </script>
-</body>
-</html>
+                // If actual U
