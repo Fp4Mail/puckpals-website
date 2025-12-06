@@ -1,0 +1,75 @@
+{
+  "siteTitle": "Puck Pals - Hockey Podcast",
+  "metaDescription": "Puck Pals is a hockey podcast for real fans \u2013 breaking down plays, trades, stories and culture around the greatest game on ice.",
+  "brand": {
+    "name": "Puck Pals",
+    "tagline": "A hockey podcast for real fans"
+  },
+  "hero": {
+    "headline": "Welcome to Puck Pals",
+    "subheadline": "Your home on the web for everything hockey \u2013 stories, analysis, laughs and the odd broken stick.",
+    "primaryCta": {
+      "label": "Listen on Spotify",
+      "url": "https://open.spotify.com/show/YourShowID"
+    },
+    "secondaryCta": {
+      "label": "Watch on YouTube",
+      "url": "https://www.youtube.com/@YourPuckPalsChannel"
+    },
+    "tertiaryCta": {
+      "label": "Browse Episodes",
+      "url": "#episodes"
+    }
+  },
+  "episodesSection": {
+    "title": "Latest Episodes",
+    "episodes": [
+      {
+        "number": "EPISODE 01",
+        "title": "Season Recap: Highlights and Lowlights",
+        "description": "We dive into the biggest moments of the season, analyzing key plays and discussing what made this year special.",
+        "url": "#"
+      },
+      {
+        "number": "EPISODE 02",
+        "title": "Trade Deadline Madness",
+        "description": "A full breakdown of the most surprising trades and how they reshape the league landscape.",
+        "url": "#"
+      },
+      {
+        "number": "EPISODE 03",
+        "title": "Behind the Bench: Coaching Stories",
+        "description": "We share stories from behind the bench and dig into how coaching decisions impact big games.",
+        "url": "#"
+      }
+    ]
+  },
+  "aboutSection": {
+    "title": "About Puck Pals",
+    "paragraphs": [
+      "Puck Pals is more than just a hockey podcast \u2013 it\u2019s a community for fans who live and breathe the game.",
+      "Whether you\u2019re a seasoned fan or just getting into hockey, we\u2019re here to break down the plays, talk storylines, share memories and celebrate what makes hockey the greatest game on earth."
+    ]
+  },
+  "contactSection": {
+    "title": "Contact Us",
+    "blurb": "Have a story to share? Want to suggest a topic or be a guest on the show? We\u2019d love to hear from you.",
+    "email": "you@example.com",
+    "phone": "+1 (234) 567-890"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/YourPuckPalsPage",
+    "youtube": "https://www.youtube.com/@YourPuckPalsChannel",
+    "spotify": "https://open.spotify.com/show/YourShowID",
+    "instagram": "",
+    "x": ""
+  },
+  "backgrounds": {
+    "intervalMs": 8000,
+    "images": [
+      "PUT_YOUR_PUBLIC_DOMAIN_HOCKEY_IMAGE_URL_1_HERE",
+      "PUT_YOUR_PUBLIC_DOMAIN_HOCKEY_IMAGE_URL_2_HERE",
+      "PUT_YOUR_PUBLIC_DOMAIN_HOCKEY_IMAGE_URL_3_HERE"
+    ]
+  }
+}

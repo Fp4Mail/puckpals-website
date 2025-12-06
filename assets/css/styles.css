@@ -1,0 +1,482 @@
+:root {
+    --ice-mint: #E8F5F3;
+    --soft-green: #C2E9E0;
+    --sage-green: #9DD9C8;
+    --forest-mist: #7BC4A8;
+    --deep-ice: #5FA88C;
+    --shadow-green: #4A8B73;
+    --text-dark: #1A3B35;
+    --text-light: #F8FDFC;
+    --accent-blue: #A8D5E2;
+    --warm-white: #FEFFFE;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--ice-mint);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Background Hockey Images */
+.background-carousel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -2;
+}
+
+.bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 3s ease-in-out;
+}
+
+.bg-image.active {
+    opacity: 0.25;
+}
+
+/* Background images are now set via JavaScript using content.json */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg,
+        rgba(232, 245, 243, 0.8) 0%,
+        rgba(194, 233, 224, 0.6) 50%,
+        rgba(157, 217, 200, 0.7) 100%);
+    z-index: -1;
+}
+
+/* Layout Containers */
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 4rem 1.5rem;
+}
+
+/* Header & Navigation */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(232, 245, 243, 0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(123, 196, 168, 0.25);
+}
+
+nav {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background: radial-gradient(circle at 30% 20%, #FEFFFE 0%, #C2E9E0 45%, #7BC4A8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--shadow-green);
+    box-shadow: 0 4px 12px rgba(26, 59, 53, 0.15);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+#site-logo-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.25rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--shadow-green);
+}
+
+#site-logo-tagline {
+    font-size: 0.75rem;
+    color: rgba(26, 59, 53, 0.8);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--shadow-green);
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: var(--forest-mist);
+    transition: width 0.2s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-social {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.nav-social a {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: rgba(123, 196, 168, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--shadow-green);
+}
+
+/* Hero Section */
+.hero {
+    padding: 4rem 0 3rem 0;
+    text-align: left;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.hero h1 span {
+    color: var(--shadow-green);
+}
+
+.hero p {
+    font-size: 1.1rem;
+    max-width: 640px;
+    color: rgba(26, 59, 53, 0.9);
+    margin-bottom: 2rem;
+}
+
+.listen-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.4rem;
+    border-radius: 999px;
+    border: none;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.98rem;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s ease;
+}
+
+.cta-button i {
+    font-size: 1.1rem;
+}
+
+.cta-button.spotify {
+    background: var(--forest-mist);
+    color: var(--warm-white);
+    box-shadow: 0 6px 14px rgba(75, 139, 115, 0.35);
+}
+
+.cta-button.youtube {
+    background: var(--warm-white);
+    color: var(--shadow-green);
+    border: 1px solid rgba(123, 196, 168, 0.4);
+}
+
+.cta-button.episodes {
+    background: transparent;
+    color: var(--shadow-green);
+    border: 1px dashed rgba(123, 196, 168, 0.6);
+}
+
+.cta-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(26, 59, 53, 0.22);
+}
+
+/* Sections */
+.content-section {
+    margin-top: 3.5rem;
+    padding: 2rem;
+    border-radius: 24px;
+    background: rgba(248, 253, 252, 0.9);
+    box-shadow: 0 10px 30px rgba(26, 59, 53, 0.12);
+    border: 1px solid rgba(123, 196, 168, 0.25);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    color: rgba(26, 59, 53, 0.8);
+}
+
+/* Episodes */
+.episodes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.episode-card {
+    background: linear-gradient(145deg, #FEFFFE 0%, #E8F5F3 100%);
+    border-radius: 20px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(26, 59, 53, 0.12);
+    border: 1px solid rgba(123, 196, 168, 0.25);
+}
+
+.episode-number {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(26, 59, 53, 0.7);
+    margin-bottom: 0.9rem;
+}
+
+.episode-title {
+    font-size: 1.15rem;
+    margin-bottom: 0.6rem;
+    color: var(--text-dark);
+}
+
+.episode-description {
+    font-size: 0.98rem;
+    color: rgba(26, 59, 53, 0.9);
+    margin-bottom: 1.2rem;
+}
+
+.play-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 600;
+    background: var(--shadow-green);
+    color: var(--warm-white);
+    box-shadow: 0 6px 16px rgba(26, 59, 53, 0.35);
+}
+
+.play-button i {
+    font-size: 0.9rem;
+}
+
+/* Floating animation */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Fade-in animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeInUp 0.8s ease;
+}
+
+/* Rotation indicator */
+.rotation-indicator {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--forest-mist);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.rotation-indicator.active {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+/* About & Contact */
+.about-copy {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-copy p {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+}
+
+.contact-blurb {
+    font-size: 1.2rem;
+    color: var(--shadow-green);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.contact-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--shadow-green);
+    text-decoration: none;
+}
+
+.contact-links a i {
+    font-size: 1.2rem;
+}
+
+/* Footer */
+footer {
+    padding: 1.5rem 1.5rem 2.5rem;
+    text-align: center;
+    color: rgba(26, 59, 53, 0.8);
+}
+
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.footer-social a {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: rgba(123, 196, 168, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--shadow-green);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .episodes-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    nav {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero {
+        text-align: center;
+    }
+
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .listen-buttons {
+        justify-content: center;
+    }
+
+    .episodes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
