@@ -72,26 +72,29 @@
         }
 
         .bg-image.active {
-            opacity: 0.15;
+            opacity: 0.4; /* Increased from 0.15 so you can actually see it */
         }
 
-        /* Hockey background images - replace with your actual photos */
+        /* Hockey background images - simplified placeholders that will definitely show */
         .bg-image:nth-child(1) { 
             background-image: 
                 url('assets/images/hockey-rink-1.jpg'),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="ice" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23E8F5F3"/><stop offset="50%" stop-color="%23C2E9E0"/><stop offset="100%" stop-color="%239DD9C8"/></linearGradient></defs><rect width="1200" height="800" fill="url(%23ice)"/><ellipse cx="600" cy="400" rx="300" ry="150" fill="none" stroke="%235FA88C" stroke-width="4"/><circle cx="600" cy="400" r="8" fill="%235FA88C"/><line x1="300" y1="250" x2="300" y2="550" stroke="%235FA88C" stroke-width="4"/><line x1="900" y1="250" x2="900" y2="550" stroke="%235FA88C" stroke-width="4"/><text x="600" y="100" text-anchor="middle" fill="%234A8B73" font-size="48" font-family="Arial,sans-serif" font-weight="bold">HOCKEY RINK</text></svg>');
+                linear-gradient(135deg, #C2E9E0 0%, #9DD9C8 50%, #7BC4A8 100%);
+            background-color: #C2E9E0;
         }
         
         .bg-image:nth-child(2) { 
             background-image: 
                 url('assets/images/hockey-arena-2.jpg'),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="arena" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23E8F5F3"/><stop offset="70%" stop-color="%237BC4A8"/><stop offset="100%" stop-color="%234A8B73"/></radialGradient></defs><rect width="1200" height="800" fill="url(%23arena)"/><rect x="100" y="200" width="1000" height="400" rx="50" fill="none" stroke="%23C2E9E0" stroke-width="3"/><rect x="150" y="250" width="900" height="300" rx="30" fill="rgba(194,233,224,0.3)"/><circle cx="300" cy="150" r="3" fill="%23E8F5F3"/><circle cx="500" cy="120" r="3" fill="%23E8F5F3"/><circle cx="700" cy="140" r="3" fill="%23E8F5F3"/><circle cx="900" cy="110" r="3" fill="%23E8F5F3"/><text x="600" y="100" text-anchor="middle" fill="%234A8B73" font-size="42" font-family="Arial,sans-serif" font-weight="bold">ICE ARENA</text></svg>');
+                linear-gradient(45deg, #E8F5F3 0%, #7BC4A8 50%, #4A8B73 100%);
+            background-color: #E8F5F3;
         }
         
         .bg-image:nth-child(3) { 
             background-image: 
                 url('assets/images/hockey-players-3.jpg'),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="action" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%239DD9C8"/><stop offset="50%" stop-color="%237BC4A8"/><stop offset="100%" stop-color="%235FA88C"/></linearGradient></defs><rect width="1200" height="800" fill="url(%23action)"/><ellipse cx="300" cy="350" rx="40" ry="60" fill="%234A8B73" opacity="0.8"/><ellipse cx="600" cy="400" rx="40" ry="60" fill="%234A8B73" opacity="0.8"/><ellipse cx="900" cy="320" rx="40" ry="60" fill="%234A8B73" opacity="0.8"/><line x1="250" y1="330" x2="320" y2="300" stroke="%231A3B35" stroke-width="4"/><line x1="550" y1="380" x2="620" y2="350" stroke="%231A3B35" stroke-width="4"/><line x1="850" y1="300" x2="920" y2="270" stroke="%231A3B35" stroke-width="4"/><circle cx="600" cy="450" r="6" fill="%231A3B35"/><text x="600" y="150" text-anchor="middle" fill="%231A3B35" font-size="38" font-family="Arial,sans-serif" font-weight="bold">PLAYERS IN ACTION</text></svg>');
+                linear-gradient(90deg, #9DD9C8 0%, #5FA88C 50%, #4A8B73 100%);
+            background-color: #9DD9C8;
         }
 
         .overlay {
@@ -755,13 +758,22 @@
         const bgImages = document.querySelectorAll('.bg-image');
         
         function rotateBg() {
+            console.log('Rotating background from', currentBg, 'to', (currentBg + 1) % bgImages.length);
             bgImages[currentBg].classList.remove('active');
             currentBg = (currentBg + 1) % bgImages.length;
             bgImages[currentBg].classList.add('active');
+            console.log('Active background is now', currentBg);
         }
         
-        // Rotate background every 8 seconds
+        // Start first background and rotate every 8 seconds
+        bgImages[0].classList.add('active');
         setInterval(rotateBg, 8000);
+        
+        // Debug: show which backgrounds exist
+        console.log('Found', bgImages.length, 'background images');
+        bgImages.forEach((bg, index) => {
+            console.log('Background', index, ':', bg);
+        });
 
         // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
