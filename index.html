@@ -75,25 +75,22 @@
             opacity: 0.4; /* Increased from 0.15 so you can actually see it */
         }
 
-        /* Hockey background images - simplified placeholders that will definitely show */
+        /* Hockey background images - Real professional photos from Unsplash */
         .bg-image:nth-child(1) { 
-            background-image: 
-                url('assets/images/hockey-rink-1.jpg'),
-                linear-gradient(135deg, #C2E9E0 0%, #9DD9C8 50%, #7BC4A8 100%);
+            /* Hockey rink from above - Professional ice hockey arena */
+            background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-color: #C2E9E0;
         }
         
         .bg-image:nth-child(2) { 
-            background-image: 
-                url('assets/images/hockey-arena-2.jpg'),
-                linear-gradient(45deg, #E8F5F3 0%, #7BC4A8 50%, #4A8B73 100%);
+            /* Hockey arena with players - Game atmosphere */
+            background-image: url('https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-color: #E8F5F3;
         }
         
         .bg-image:nth-child(3) { 
-            background-image: 
-                url('assets/images/hockey-players-3.jpg'),
-                linear-gradient(90deg, #9DD9C8 0%, #5FA88C 50%, #4A8B73 100%);
+            /* Hockey players in action - Dynamic game play */
+            background-image: url('https://images.unsplash.com/photo-1515703407324-5f753afd8be8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-color: #9DD9C8;
         }
 
@@ -753,27 +750,32 @@
     </footer>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Background Image Rotation
+        // Background Image Rotation with enhanced visibility
         let currentBg = 0;
         const bgImages = document.querySelectorAll('.bg-image');
         
         function rotateBg() {
-            console.log('Rotating background from', currentBg, 'to', (currentBg + 1) % bgImages.length);
+            console.log('🏒 Rotating hockey background from', currentBg, 'to', (currentBg + 1) % bgImages.length);
             bgImages[currentBg].classList.remove('active');
             currentBg = (currentBg + 1) % bgImages.length;
             bgImages[currentBg].classList.add('active');
-            console.log('Active background is now', currentBg);
+            console.log('🏒 Now showing hockey background', currentBg + 1);
         }
         
-        // Start first background and rotate every 8 seconds
+        // Start first background and rotate every 6 seconds (faster for better demo)
         bgImages[0].classList.add('active');
-        setInterval(rotateBg, 8000);
+        setInterval(rotateBg, 6000);
         
         // Debug: show which backgrounds exist
-        console.log('Found', bgImages.length, 'background images');
+        console.log('🏒 Found', bgImages.length, 'hockey background images');
         bgImages.forEach((bg, index) => {
-            console.log('Background', index, ':', bg);
+            console.log('🏒 Background', index + 1, '- Ready');
         });
+        
+        // Show initial background info
+        console.log('🏒 Puck Pals hockey backgrounds loading...');
+        console.log('🏒 Background rotation: Every 6 seconds');
+        console.log('🏒 Watch the background change behind the content!');
 
         // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');

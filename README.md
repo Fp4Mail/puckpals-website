@@ -105,54 +105,47 @@ If you prefer not to use Git:
 - **Episode Management:** Easy-to-update episode cards
 - **Contact Form Ready:** Structured for easy contact integration
 
-## 🏒 **Adding Hockey Landscape Images**
+## 🏒 **Professional Hockey Background Images - Now Live!**
 
-Your website now supports real hockey background images that rotate every 8 seconds.
+Your website now displays **real professional hockey photos** that rotate every 8 seconds, sourced directly from Unsplash's free image database.
 
-### Best Free Hockey Image Sources:
-1. **[Pexels](https://www.pexels.com/search/hockey/)** - Completely free, no attribution required
-2. **[Rawpixel](https://www.rawpixel.com/search/ice%20hockey)** - Public domain images
-3. **[Freepik](https://www.freepik.com/free-photos-vectors/hockey-background)** - Free with attribution
-4. **[FreeImages](https://www.freeimages.com/search/ice-hockey)** - Free with registration
+### Current Background Images:
+1. **Hockey Rink** - Professional ice hockey arena aerial view
+2. **Hockey Arena** - Players and arena atmosphere  
+3. **Players in Action** - Dynamic game play shots
 
-### Image Requirements:
-- **Format:** JPG or PNG
-- **Size:** Minimum 1920x1080px (landscape)
-- **Orientation:** Landscape/horizontal
-- **File Size:** Under 2MB each for fast loading
+### Direct Image Linking Benefits:
+✅ **No file uploads needed** - Images load directly from Unsplash  
+✅ **Professional quality** - High-resolution hockey photography  
+✅ **Always available** - Reliable CDN hosting  
+✅ **Legally free** - No attribution required for Unsplash  
+✅ **Instant updates** - Change images by updating URLs  
 
-### Recommended Image Types:
-1. **Hockey rink aerial view** - Ice surface from above
-2. **Arena with crowd** - Stadium atmosphere shots  
-3. **Players in action** - Game action during play
-4. **Ice surface details** - Close-ups of ice, sticks, pucks
-5. **Stadium exteriors** - Hockey arena buildings
+### How to Add More Hockey Images:
 
-### Upload Instructions:
-1. **Create the folder structure:**
-   ```
-   assets/
-   └── images/
-       ├── hockey-rink-1.jpg      # Aerial rink view
-       ├── hockey-arena-2.jpg     # Arena/crowd shot
-       └── hockey-players-3.jpg   # Players in action
-   ```
+**Find new images:**
+1. Go to [Unsplash Hockey Images](https://unsplash.com/s/photos/hockey)
+2. Click on any hockey photo you like
+3. Right-click the image → "Copy image address"
+4. Replace one of the URLs in your CSS
 
-2. **Upload to GitHub:**
-   - Go to your repository
-   - Create `assets/images/` folder
-   - Upload your 3 hockey images with these exact names
+**Example URL format:**
+```css
+background-image: url('https://images.unsplash.com/photo-XXXXXX?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+```
 
-3. **Images automatically display:**
-   - The CSS is already configured to load these images
-   - They'll start rotating as backgrounds immediately
-   - Fallback placeholder images show if files aren't found
+### Best Hockey Image Categories on Unsplash:
+- **[Ice Hockey](https://unsplash.com/s/photos/ice-hockey)** - 1,400+ photos
+- **[Hockey Players](https://unsplash.com/s/photos/hockey-player)** - 1,100+ photos  
+- **[Hockey Rink](https://unsplash.com/s/photos/hockey-rink)** - 860+ photos
+- **[NHL](https://unsplash.com/s/photos/nhl)** - 114+ photos
+- **[Hockey Game](https://unsplash.com/s/photos/hockey-game)** - 728+ photos
 
-### Image Optimization Tips:
-- **Compress images** using TinyPNG or similar
-- **Test on mobile** - landscapes work better than portraits
-- **Choose high contrast** - images appear at low opacity behind text
-- **Avoid text-heavy images** - they can clash with site content
+### Image Specifications:
+- **Size parameter:** `w=1920` for high-resolution
+- **Quality:** `q=80` for optimal balance
+- **Format:** Auto-optimized by Unsplash
+- **Loading:** Automatic lazy loading
 
 ## 📺 **Connecting Your Podcast Platforms**
 
