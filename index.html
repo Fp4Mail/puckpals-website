@@ -72,26 +72,32 @@
         }
 
         .bg-image.active {
-            opacity: 0.4; /* Increased from 0.15 so you can actually see it */
+            opacity: 0.25; /* Subtle but visible with pastel green theme */
         }
 
-        /* Hockey background images - Real professional photos from Unsplash */
+        /* Hockey background images - Back to pastel green aesthetic with working images */
         .bg-image:nth-child(1) { 
-            /* Hockey rink from above - Professional ice hockey arena */
-            background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-color: #C2E9E0;
+            /* Hockey rink - with working image URLs and pastel green fallback */
+            background-image: 
+                url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&h=600&fit=crop'),
+                linear-gradient(135deg, #E8F5F3 0%, #C2E9E0 50%, #9DD9C8 100%);
+            background-color: #E8F5F3; /* Pastel green fallback */
         }
         
         .bg-image:nth-child(2) { 
-            /* Hockey arena with players - Game atmosphere */
-            background-image: url('https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-color: #E8F5F3;
+            /* Hockey arena - with pastel green theme */
+            background-image: 
+                url('https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=1200&h=600&fit=crop'),
+                linear-gradient(45deg, #C2E9E0 0%, #7BC4A8 50%, #5FA88C 100%);
+            background-color: #C2E9E0; /* Soft green fallback */
         }
         
         .bg-image:nth-child(3) { 
-            /* Hockey players in action - Dynamic game play */
-            background-image: url('https://images.unsplash.com/photo-1515703407324-5f753afd8be8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-color: #9DD9C8;
+            /* Hockey players - maintaining green aesthetic */
+            background-image: 
+                url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&h=600&fit=crop&sat=-20'),
+                linear-gradient(90deg, #9DD9C8 0%, #7BC4A8 50%, #5FA88C 100%);
+            background-color: #9DD9C8; /* Sage green fallback */
         }
 
         .overlay {
@@ -356,7 +362,25 @@
             left: 0;
         }
 
-        /* Listen Buttons Layout */
+        /* Add subtle rotation indicator */
+        .rotation-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--forest-mist);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .rotation-indicator.active {
+            opacity: 1;
+            transform: scale(1.3);
+            box-shadow: 0 0 15px var(--forest-mist);
+        }
         .listen-buttons {
             display: flex;
             gap: 1rem;
@@ -604,6 +628,9 @@
         <div class="bg-image"></div>
     </div>
     <div class="overlay"></div>
+    
+    <!-- Subtle rotation indicator -->
+    <div class="rotation-indicator" id="rotationIndicator"></div>
 
     <!-- Header -->
     <header id="header">
@@ -750,32 +777,33 @@
     </footer>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Background Image Rotation with enhanced visibility
+        // Background Image Rotation - Elegant with visual indicator
         let currentBg = 0;
         const bgImages = document.querySelectorAll('.bg-image');
+        const indicator = document.getElementById('rotationIndicator');
         
         function rotateBg() {
-            console.log('🏒 Rotating hockey background from', currentBg, 'to', (currentBg + 1) % bgImages.length);
+            // Subtle rotation with visual feedback
             bgImages[currentBg].classList.remove('active');
             currentBg = (currentBg + 1) % bgImages.length;
             bgImages[currentBg].classList.add('active');
-            console.log('🏒 Now showing hockey background', currentBg + 1);
+            
+            // Pulse indicator to show rotation
+            indicator.classList.add('active');
+            setTimeout(() => indicator.classList.remove('active'), 500);
+            
+            console.log(`🏒 Hockey background ${currentBg + 1}/3 now active (pastel green theme)`);
         }
         
-        // Start first background and rotate every 6 seconds (faster for better demo)
+        // Start first background and rotate every 8 seconds
         bgImages[0].classList.add('active');
-        setInterval(rotateBg, 6000);
+        setInterval(rotateBg, 8000);
         
-        // Debug: show which backgrounds exist
-        console.log('🏒 Found', bgImages.length, 'hockey background images');
-        bgImages.forEach((bg, index) => {
-            console.log('🏒 Background', index + 1, '- Ready');
-        });
-        
-        // Show initial background info
-        console.log('🏒 Puck Pals hockey backgrounds loading...');
-        console.log('🏒 Background rotation: Every 6 seconds');
-        console.log('🏒 Watch the background change behind the content!');
+        // Clean debugging
+        console.log('🏒 Puck Pals - Background rotation initialized');
+        console.log('🏒 Theme: Pastel green with hockey images');
+        console.log('🏒 Rotation: Every 8 seconds');
+        console.log('🏒 Watch for: Subtle background changes + indicator pulse (bottom right)');
 
         // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
