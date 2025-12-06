@@ -67,9 +67,10 @@
   "backgrounds": {
     "intervalMs": 8000,
     "images": [
-      "PUT_YOUR_PUBLIC_DOMAIN_HOCKEY_IMAGE_URL_1_HERE",
-      "PUT_YOUR_PUBLIC_DOMAIN_HOCKEY_IMAGE_URL_2_HERE",
-      "PUT_YOUR_PUBLIC_DOMAIN_HOCKEY_IMAGE_URL_3_HERE"
+      "assets/images/hockey1.jpg",
+      "assets/images/hockey2.jpg",
+      "assets/images/hocke3.jpg",
+      "assets/images/hockey2.jpg"
     ]
   }
 }
