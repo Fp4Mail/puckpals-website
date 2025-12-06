@@ -49,7 +49,7 @@ body {
 }
 
 .bg-image.active {
-    opacity: 0.25;
+    opacity: 0.35; /* Increased for better visibility */
 }
 
 /* Background images are now set via JavaScript using content.json */
@@ -350,23 +350,26 @@ nav {
     animation: fadeInUp 0.8s ease;
 }
 
-/* Rotation indicator */
+/* Rotation indicator - Enhanced visibility */
 .rotation-indicator {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     background: var(--forest-mist);
-    opacity: 0.6;
+    opacity: 0.7;
     transition: all 0.3s ease;
     z-index: 1001;
+    border: 2px solid var(--warm-white);
+    box-shadow: 0 2px 8px rgba(26, 59, 53, 0.2);
 }
 
 .rotation-indicator.active {
     opacity: 1;
-    transform: scale(1.15);
+    transform: scale(1.4);
+    box-shadow: 0 0 20px var(--forest-mist);
 }
 
 /* About & Contact */

@@ -1,13 +1,13 @@
 {
   "siteTitle": "Puck Pals - Hockey Podcast",
-  "metaDescription": "Puck Pals is a hockey podcast for real fans \u2013 breaking down plays, trades, stories and culture around the greatest game on ice.",
+  "metaDescription": "Puck Pals is a hockey podcast for real fans – breaking down plays, trades, stories and culture around the greatest game on ice.",
   "brand": {
     "name": "Puck Pals",
     "tagline": "A hockey podcast for real fans"
   },
   "hero": {
     "headline": "Welcome to Puck Pals",
-    "subheadline": "Your home on the web for everything hockey \u2013 stories, analysis, laughs and the odd broken stick.",
+    "subheadline": "Your home on the web for everything hockey – stories, analysis, laughs and the odd broken stick.",
     "primaryCta": {
       "label": "Listen on Spotify",
       "url": "https://open.spotify.com/show/YourShowID"
@@ -47,14 +47,14 @@
   "aboutSection": {
     "title": "About Puck Pals",
     "paragraphs": [
-      "Puck Pals is more than just a hockey podcast \u2013 it\u2019s a community for fans who live and breathe the game.",
-      "Whether you\u2019re a seasoned fan or just getting into hockey, we\u2019re here to break down the plays, talk storylines, share memories and celebrate what makes hockey the greatest game on earth."
+      "Puck Pals is more than just a hockey podcast – it's a community for fans who live and breathe the game.",
+      "Whether you're a seasoned fan or just getting into hockey, we're here to break down the plays, talk storylines, share memories and celebrate what makes hockey the greatest game on earth."
     ]
   },
   "contactSection": {
     "title": "Contact Us",
-    "blurb": "Have a story to share? Want to suggest a topic or be a guest on the show? We\u2019d love to hear from you.",
-    "email": "you@example.com",
+    "blurb": "Have a story to share? Want to suggest a topic or be a guest on the show? We'd love to hear from you.",
+    "email": "hello@pvckpals.com",
     "phone": "+1 (234) 567-890"
   },
   "social": {
@@ -69,8 +69,7 @@
     "images": [
       "assets/images/hockey1.jpg",
       "assets/images/hockey2.jpg",
-      "assets/images/hocke3.jpg",
-      "assets/images/hockey2.jpg"
+      "assets/images/hockey3.jpg"
     ]
   }
 }

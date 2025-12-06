@@ -1,0 +1,44 @@
+# Puck Pals Website - Git Ignore
+
+# System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+*.tmp
+*.temp
+
+# Build outputs (if you add build tools later)
+dist/
+build/
+node_modules/
+
+# Environment files (if you add backend features)
+.env
+.env.local
+.env.production
+
+# Backup files
+*.bak
+*.backup
+*_backup
+
+# Cache directories
+.cache/
+.npm/

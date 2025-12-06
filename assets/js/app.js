@@ -14,7 +14,7 @@
       $('#site-logo-tagline').textContent = content.brand.tagline;
     }
     if (content.metaDescription) {
-      var meta = document.querySelector('meta[name=\"description\"]');
+      var meta = document.querySelector('meta[name="description"]');
       if (meta) meta.setAttribute('content', content.metaDescription);
     }
     var yearEl = $('#footer-year');
@@ -59,11 +59,11 @@
       var card = document.createElement('article');
       card.className = 'episode-card floating';
       card.innerHTML =
-        '<div class=\"episode-number\">' + (ep.number || ('EPISODE ' + (index + 1).toString().padStart(2, '0'))) + '</div>' +
-        '<h3 class=\"episode-title\">' + (ep.title || 'Untitled episode') + '</h3>' +
-        '<p class=\"episode-description\">' + (ep.description || '') + '</p>' +
-        '<a class=\"play-button\" href=\"' + (ep.url || '#') + '\">' +
-          '<i class=\"fas fa-play\"></i>' +
+        '<div class="episode-number">' + (ep.number || ('EPISODE ' + (index + 1).toString().padStart(2, '0'))) + '</div>' +
+        '<h3 class="episode-title">' + (ep.title || 'Untitled episode') + '</h3>' +
+        '<p class="episode-description">' + (ep.description || '') + '</p>' +
+        '<a class="play-button" href="' + (ep.url || '#') + '">' +
+          '<i class="fas fa-play"></i>' +
           '<span>Play Episode</span>' +
         '</a>';
 
@@ -75,7 +75,7 @@
         if (btn.getAttribute('href') === '#') {
           e.preventDefault();
           var original = btn.innerHTML;
-          btn.innerHTML = '<i class=\"fas fa-pause\"></i><span> Playing…</span>';
+          btn.innerHTML = '<i class="fas fa-pause"></i><span> Playing…</span>';
           setTimeout(function () { btn.innerHTML = original; }, 1800);
         }
       });
@@ -138,16 +138,34 @@
   }
 
   function startBackgroundCarousel(content) {
-    if (!content.backgrounds || !content.backgrounds.images || !content.backgrounds.images.length) return;
+    console.log('🏒 Starting Puck Pals background carousel...');
+    
+    if (!content.backgrounds || !content.backgrounds.images || !content.backgrounds.images.length) {
+      console.log('🏒 No background images configured in content.json');
+      return;
+    }
 
     var urls = content.backgrounds.images;
     var intervalMs = content.backgrounds.intervalMs || 8000;
     var bgNodes = $all('.bg-image');
-    if (!bgNodes.length) return;
+    
+    if (!bgNodes.length) {
+      console.log('🏒 No .bg-image elements found in DOM');
+      return;
+    }
 
+    console.log('🏒 Found', bgNodes.length, 'background containers');
+    console.log('🏒 Loading', urls.length, 'hockey images:');
+    urls.forEach(function(url, index) {
+      console.log('🏒 Image', index + 1 + ':', url);
+    });
+    console.log('🏒 Rotation interval:', intervalMs + 'ms (' + (intervalMs/1000) + ' seconds)');
+
+    // Set background images
     bgNodes.forEach(function (node, index) {
       var url = urls[index % urls.length];
-      node.style.backgroundImage = \"url('\" + url + \"')\";
+      node.style.backgroundImage = "url('" + url + "')";
+      console.log('🏒 Applied background', index + 1, 'to DOM element');
     });
 
     var indicator = $('#rotationIndicator');
@@ -155,17 +173,30 @@
 
     function setActive(index) {
       bgNodes.forEach(function (node, i) {
-        if (i === index) node.classList.add('active');
-        else node.classList.remove('active');
+        if (i === index) {
+          node.classList.add('active');
+        } else {
+          node.classList.remove('active');
+        }
       });
+      
+      // Enhanced indicator animation
       if (indicator) {
         indicator.classList.remove('active');
-        void indicator.offsetWidth;
+        void indicator.offsetWidth; // Force reflow
         indicator.classList.add('active');
+        setTimeout(function() {
+          indicator.classList.remove('active');
+        }, 600);
       }
+      
+      console.log('🏒 Hockey background', index + 1, 'is now active');
     }
 
+    // Start the rotation
     setActive(0);
+    console.log('🏒 Background rotation started! Watch for changes every', intervalMs/1000, 'seconds');
+    
     setInterval(function () {
       current = (current + 1) % bgNodes.length;
       setActive(current);
@@ -173,6 +204,7 @@
   }
 
   function init(content) {
+    console.log('🏒 Puck Pals website initializing...');
     applyBasicMeta(content);
     applyHero(content);
     applyEpisodes(content);
@@ -180,14 +212,25 @@
     applyContact(content);
     applySocial(content);
     startBackgroundCarousel(content);
+    console.log('🏒 Puck Pals website ready!');
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    console.log('🏒 Loading Puck Pals content...');
     fetch('content.json?v=' + Date.now())
-      .then(function (res) { return res.json(); })
-      .then(function (data) { init(data); })
+      .then(function (res) { 
+        if (!res.ok) {
+          throw new Error('HTTP ' + res.status + ' - ' + res.statusText);
+        }
+        return res.json(); 
+      })
+      .then(function (data) { 
+        console.log('🏒 Content loaded successfully');
+        init(data); 
+      })
       .catch(function (err) {
-        console.error('Error loading content.json', err);
+        console.error('🚨 Error loading content.json:', err);
+        console.log('🏒 Make sure content.json is in the same directory as index.html');
       });
   });
 })();
